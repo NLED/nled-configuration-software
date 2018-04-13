@@ -1,0 +1,47 @@
+HardwareID	44
+Name	NLED Four Channel Controller Mini
+WebpageURL	www.NLEDshop.com/fourmini/
+SupportedFirmwareV	1
+SupportedFirmwareRev	0
+SupportedHardwareV	1
+Channels	0
+LockChannelAmt	false
+DataSpace	0
+writeBlockSize	0	0	0	0
+eraseBlockSize	0
+HWPVSpace	0
+MaxIndexedSequences	0
+IndexMemoryModel	0
+FillUpperData	false
+16-BitProcessor	false
+16-bitMode	false
+BasicVersion	0
+LinkedSupport	false
+GammaCorrection	1
+AccelerometerMode	0
+MaxSpeed	0
+MaxFrames	0	0
+ConfigFlags	fDisModeMSBa,fDisModeLSBa,fAutoDetect,fRS485Enable,fAutoDetectID,none,fMasterFullPkts,fDualModeCom,none,none,none,none,none,none,none,none,none
+ConfigBytes	none
+DMXRxModes	8-bit RGBW(4),8-Bit RGBW+Intensity(5),16-Bit RGBW(8),8-bit RGB Compatibility(3),RGBW+Alpha+Strobe(6)
+PixelChipset	8
+PixelCS	WS2812B(RGB Pixel)	0
+PixelCS	WS2811(3 chn. I.C.)	0
+PixelCS	WS2801(3 chn. I.C.)	2
+PixelCS	LPD8806(6 chn. I.C.)	4
+PixelCS	LPD6803(3 chn. I.C.)	6
+PixelCS	APA102(RGB Pixel)	8
+PixelCS	SK9822(RGB Pixel)	8
+PixelCS	SK6812(RGBW Pixel)	0
+
+
+
+	#define DisplayModeFlag ConfigFlags,0 ;1=Countdown, 0 = On all the Time
+	#define DisplayDimFlag ConfigFlags, 1 ; 1 = dim, 0 = full brightness
+	
+	#define AutoDetectFlag ConfigFlags, 2 ;1 = Switchover, 0 = ignore
+	#define RS485Enable ConfigFlags, 3 ;1 = 485 enabled with serial, 0 = 485 disabled with serial
+	#define SerialOrDMX ConfigFlags, 4 ;0 = DMX, 1 = Serial
+	#define TransmitMode ConfigFlags,5 ;1 = Master, 0 = Reception
+	#define MasterPartialFlag ConfigFlags, 6 ;1 = Full Packets, 0 = Partial	
+	

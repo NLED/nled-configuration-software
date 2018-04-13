@@ -1,0 +1,35 @@
+HardwareID	60
+Name	Pixel Controller Micro
+WebpageURL	www.NLEDshop.com/pixelmicro/
+SupportedFirmwareV	1
+SupportedFirmwareRev	0
+SupportedHardwareV	1
+Channels	0
+LockChannelAmt	false
+DataSpace	0
+writeBlockSize	0	0	0	0
+eraseBlockSize	0
+HWPVSpace	0
+MaxIndexedSequences	0
+IndexMemoryModel	0
+FillUpperData	false
+16-BitProcessor	false
+16-bitMode	false
+BasicVersion	0
+LinkedSupport	false
+GammaCorrection	1
+AccelerometerMode	0
+MaxSpeed	0
+MaxFrames	0	0
+ConfigFlags	fActivityLEDEnable,fDMXDecoderModeFull,fEnableSerialColorSwap,fColorOrderGRB,fColorOrderGRBW,fColorOrderBGR,fColorOrderBRG,fDMXDecoderModeEnable,none,none,none,none,none,none,none,none
+ConfigBytes	bPixelChipset,bUserPixelAmountLSB
+DMXRxModes	none
+PixelChipset	8
+PixelCS	WS2812B(RGB Pixel)	0
+PixelCS	WS2811(3 chn. I.C.)	0
+PixelCS	WS2801(3 chn. I.C.)	2
+PixelCS	LPD8806(6 chn. I.C.)	4
+PixelCS	LPD6803(3 chn. I.C.)	6
+PixelCS	APA102(RGB Pixel)	8
+PixelCS	SK9822(RGB Pixel)	8
+PixelCS	SK6812(RGBW Pixel)	0

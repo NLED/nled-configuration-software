@@ -1,0 +1,27 @@
+HardwareID	30
+Name	30 Channel High Current LED Controller
+WebpageURL	www.NLEDshop.com/30chan
+SupportedFirmwareV	2
+SupportedFirmwareRev	0
+SupportedHardwareV	1
+Channels	30
+LockChannelAmt	true
+DataSpace	14208
+writeBlockSize	64	64	64	0 //index size, hwpv size, sequence size, +1 dummy to make it work....
+eraseBlockSize	1024
+HWPVSpace	1024
+MaxIndexedSequences	64
+IndexMemoryModel	0
+FillUpperData	false
+16-BitProcessor	false
+16-bitMode	false
+BasicVersion	0
+LinkedSupport	true
+GammaCorrection	1
+AccelerometerMode	0
+MaxSpeed	65535
+MaxFrames	256	65535
+ConfigFlags	fDisModeMSBa,fDisModeLSBa,fLEDModeMSBa,fLEDModeLSBa,fAutoDetectID,fAutoDetect,f8or16Bit,fRS485Enable,fMasterEnable,fMasterFullPkts,none,fGammaCorrectionEnabled,none,none,none,fDualModeCom
+ConfigBytes	bDMXAdrMSB,bDMXAdrLSB,bDMXModeID,bBaudRateID
+DMXRxModes	8-bit Standard(30), 8-bit Stand.+Intensity(31),16-Bit Standard(60),3 Chan RGB Control(3),Sequence Control(3),Sequence Con /w 30 Chan.
+PixelChipset	0

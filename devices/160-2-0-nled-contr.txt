@@ -1,0 +1,39 @@
+HardwareID	160
+Name	Pixel Controller Electron
+WebpageURL	www.NLEDshop.com/pixelelectron/
+SupportedFirmwareV	2
+SupportedFirmwareRev	0
+SupportedHardwareV	1
+Channels	512
+LockChannelAmt	false
+DataSpace	16000000
+writeBlockSize	192	192	256	0 //index size, hwpv size, sequence size, +1 dummy to make it work....
+eraseBlockSize	65536
+HWPVSpace	21845
+MaxIndexedSequences	256
+IndexMemoryModel	1
+FillUpperData	true
+16-BitProcessor	true
+16-bitMode	false
+BasicVersion	0
+LinkedSupport	true
+GammaCorrection	1
+AccelerometerMode	1
+MaxSpeed	65535
+MaxFrames	256	65535
+ConfigFlags	none,none,fLEDModeMSBa,fLEDModeLSBa,fAutoDetectID,fAutoDetect,fIRCardEnable,fIRCardEnableSpeed,fMasterEnable,fMasterFullPkts,fGammaCorrectionEnabled,fAccMeterAutoShutOff,fAccMeterAutoShutOffMode,fAccMeterMovement,fAccMeterDoubleTap,fDualModeCom
+ConfigBytes	bDMXAdrMSB,bDMXAdrLSB,bDMXModeID,bBaudRateID,bGlobalColorShift,bPixelChipset,bAccmeterTimeoutVal,bAccmeterDoubleTapVal
+DMXRxModes	170 RGB Channel,Sequence Control
+PixelChipset	12
+PixelCS	WS2801(3 chn. I.C)	0
+PixelCS	WS2811(3 chn. I.C)	1
+PixelCS	WS2812/B(RGB Pixel)	1
+PixelCS	LPD8806(6 chn. I.C)	2
+PixelCS	LPD6803(3 chn. I.C)	3
+PixelCS	LPD1886(3 chn. I.C)	4
+PixelCS	TM1803(3 chn. I.C)	1
+PixelCS	APA102(RGB Pixel)	6
+PixelCS	APA104(RGB Pixel)	1
+PixelCS	SK6812(RGBW Pixel)	1
+PixelCS	DMX-512 Output	7
+PixelCS	APA106, PD9823	8
