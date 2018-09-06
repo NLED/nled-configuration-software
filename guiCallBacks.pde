@@ -32,7 +32,6 @@ void txtHandleGenericNumber()
   textFieldPtr.selected = false;
 }
 
-
 //======================================================================================================
 
 void genericDDCallBack()

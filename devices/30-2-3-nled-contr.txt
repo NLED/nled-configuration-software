@@ -21,7 +21,7 @@ GammaCorrection	1
 AccelerometerMode	0
 MaxSpeed	65535
 MaxFrames	256	65535
-ConfigFlags	fDisModeMSBa,fDisModeLSBa,fActivtyLEDMSBa,fActivtyLEDLSBa,fAutoDetectID,fAutoDetect,f8or16Bit,fRS485Enable,fMasterEnable,fMasterFullPkts,none,fGammaCorrectionEnabled,none,none,none,fDualModeCom
+ConfigFlags	fDisModeMSBa,fDisModeLSBa,fActivtyLEDMSBa,fActivtyLEDLSBa,fAutoDetectID,fAutoDetect,f8or16Bit,fRS485Enable,fMasterEnable,fMasterFullPkts,fDMXAutoRelease,fDMXReleaseIdle,fGammaCorrectionEnabled,fIRCardEnable,fIRCardEnableSpeed,fDualModeCom
 ConfigBytes	bDMXAdrMSB,bDMXAdrLSB,bDMXModeID,bBaudRateID
 DMXRxModes	8-bit Standard(30), 8-bit Stand.+Intensity(31),16-Bit Standard(60),3 Chan RGB Control(3),Sequence Control(3),Sequence Con /w 30 Chan.
 PixelChipset	0

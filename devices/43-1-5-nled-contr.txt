@@ -1,8 +1,8 @@
-HardwareID	44
-Name	NLED Four Channel Controller Mini
-WebpageURL	www.NLEDshop.com/fourmini/
+HardwareID	43
+Name	NLED 4 Channel DMX Wash Controller
+WebpageURL	www.NLEDshop.com/4chandmx/
 SupportedFirmwareV	1
-SupportedFirmwareRev	0
+SupportedFirmwareRev	5
 SupportedHardwareV	1
 Channels	0
 LockChannelAmt	false

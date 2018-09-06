@@ -3,65 +3,63 @@
 void OpenCOMPort(String NameID)
 {
   println("OpenCOMPort() with "+NameID+" at baud: "+ProgramBaudRate);
-  
-  if(NameID.equals("TCP/IP"))
+
+  if (NameID.equals("TCP/IP"))
   {
     thread("OpenTCP");
     return;
   }
-  
+
   try {
     serialPort.stop();
-    serialPort.dispose();     
+    serialPort.dispose();
   }
-  catch(Exception e) { }
+  catch(Exception e) {
+  }
 
   int x = 0; //so can be used in catch
-  
+
   try 
   {
     for (x =0; x != Serial.list().length; x++) 
     {
-      if(NameID.equals(Serial.list()[x]))
+      if (NameID.equals(Serial.list()[x]))
       {  
         portName = Serial.list()[x];      
         serialPort = new Serial(this, portName, ProgramBaudRate);
-        
+
         ShowNotification(3);
         println("Connected to "+portName);
-        
+
         //Decide here what to do about micro and mini which don't use the aurora protocol
-       
-       if(comManualDeviceSelectDD.selStr == 0) OpenConnection(); //Aurora device selected, attempt connection command
-       else
-       {
-        //either a mini or micro, handle
-         devConnected = true;    
-         
-         
-         device.HardwareID = cDeviceSelectionListIDNum[comManualDeviceSelectDD.selStr];
-         //
-        // if(comManualDeviceSelectDD.selStr == 1) device.HardwareID = 60;
-       //   else if(comManualDeviceSelectDD.selStr == 2) device.HardwareID = 61;       
-        
-        device.HardwareVersion = 1;
-        if(device.HardwareID == 60) device.FirmwareVersion = 4;
-        else device.FirmwareVersion = 1;
-        device.FirmwareRevision = 0;   
-        
-         
+
+        if (comManualDeviceSelectDD.selStr == 0) OpenConnection(); //Aurora device selected, attempt connection command
+        else
+        {
+          //either a mini or micro, handle
+          devConnected = true;    
+
+
+          device.HardwareID = cDeviceSelectionListIDNum[comManualDeviceSelectDD.selStr];
+          //
+          // if(comManualDeviceSelectDD.selStr == 1) device.HardwareID = 60;
+          //   else if(comManualDeviceSelectDD.selStr == 2) device.HardwareID = 61;       
+
+          device.HardwareVersion = 1;
+          if (device.HardwareID == 60) device.FirmwareVersion = 4;
+          else device.FirmwareVersion = 1;
+          device.FirmwareRevision = 0;   
 
           LoadDeviceFile();
-           ShowNotification(7);
-       }
-        
+          ShowNotification(7);
+        }
+
         break;
-      }
-      else
+      } else
       {
-        //println(Serial.list()[x]+" is not a Match for COM port in software.ini");    
-      }  
-    }  
+        //println(Serial.list()[x]+" is not a Match for COM port in software.ini");
+      }
+    }
   }
   catch(Exception e)
   {
@@ -77,7 +75,7 @@ void OpenCOMPort(String NameID)
 void CloseCOMPort()
 {
   println("CloseCOMPort() - Closing Port");    
- devConnected = false;    
+  devConnected = false;    
 
   try   
   {  
@@ -85,13 +83,12 @@ void CloseCOMPort()
     serialPort.stop();
     serialPort.dispose();
     devConnected = false;
-
   }
   catch(Exception e)
   {
     println("No Port To Close");
   }  
-  
+
   portName = "None";
   println("COM Port Closed");
 }
@@ -100,8 +97,8 @@ void CloseCOMPort()
 
 void CloseCommunicationPort()
 {
-  if(CommunicationMode == 0) CloseCOMPort();  
-//  else if(CommunicationMode == 1) CloseTCP();    
+  if (CommunicationMode == 0) CloseCOMPort();  
+  //  else if(CommunicationMode == 1) CloseTCP();
 } //end CloseCommunicationPort()
 
 
@@ -111,22 +108,23 @@ void CloseCommunicationPort()
 void SendSingleDataChar(char passedValue)
 {
   try {
-    if(CommunicationMode == 0) serialPort.write(passedValue);
-  //  else if(CommunicationMode == 1) TCPClient.write(passedValue);
+    if (CommunicationMode == 0) serialPort.write(passedValue);
+    //  else if(CommunicationMode == 1) TCPClient.write(passedValue);
   }
-  catch(Exception e) { }
-  
+  catch(Exception e) {
+  }
 }
 
 void SendSingleDataByte(int passedValue)
 {
   println("Sent 1 byte: "+passedValue);
-  
+
   try {
-    if(CommunicationMode == 0) serialPort.write(passedValue);
-   // else if(CommunicationMode == 1) TCPClient.write(passedValue);
+    if (CommunicationMode == 0) serialPort.write(passedValue);
+    // else if(CommunicationMode == 1) TCPClient.write(passedValue);
   }
-  catch(Exception e) { }
+  catch(Exception e) {
+  }
 }
 
 
@@ -163,11 +161,11 @@ void DataRecieved()
   //START TIMER METHOD
   /*
 int tempTime = (millis() - HoldMiliSec);
-println("Received: "+RXByte1+"/"+char(RXByte1)+" Time: "+tempTime);
-HoldMiliSec=millis();  
-*/
+   println("Received: "+RXByte1+"/"+char(RXByte1)+" Time: "+tempTime);
+   HoldMiliSec=millis();  
+   */
   //END TIMER METHOD
-  
+
   if (SentCmdRequest == true && RXByte2 == 'a' && RXByte1 == '9')
   {
     RecievedOpenAck = true;
@@ -180,14 +178,14 @@ HoldMiliSec=millis();
     SendSingleDataChar('d');  
     SendSingleDataChar('9');   
     SendSingleDataChar('9');
-    
+
     println("Sent Acknowledge");
-  }
+  } 
   else if (RecievedOpenAck == true  && RXByte2 == 'f' && RXByte1 == '0')
   {
     thread("SendAckedCommand");
-  }
-  else if(SentConfigRequest == true)
+  } 
+  else if (SentConfigRequest == true)
   {
     switch(ReceiveCounter)
     {
@@ -197,11 +195,11 @@ HoldMiliSec=millis();
     case 1: //LSB
       RecievedDeviceConfigsLSB = RXByte1;    
       SentConfigRequest = false;
-      println("Requested and Recieved Configurations "+binary(RecievedDeviceConfigsMSB,8)+" "+binary(RecievedDeviceConfigsLSB,8));
-      break;  
+      println("Requested and Recieved Configurations "+binary(RecievedDeviceConfigsMSB, 8)+" "+binary(RecievedDeviceConfigsLSB, 8));
+      break;
     } //end switch
     ReceiveCounter++;
-  }
+  } 
   else if (SentOpenRequest == true)
   {
     println("Counter: "+ReceiveCounter);
@@ -209,7 +207,7 @@ HoldMiliSec=millis();
     {
     case 0: //hardware ID
       holdHardwareID = device.HardwareID; //holds current or old HardwareID
-      
+
       device.HardwareID = RXByte1;
       break;      
     case 1: //hardware version ID, not really used
@@ -222,14 +220,14 @@ HoldMiliSec=millis();
       device.FirmwareRevision = RXByte1;
       break;
     case 4:  //Bootloader Target HardwareID
-      
+
       break;      
     case 5:  //Bootloader Version Number
       device.BootloaderVersion = RXByte1;
       break;      
     case 6:  //UserID Number Configuration
       device.UserConfiguredIDNum = RXByte1;
-      
+
       //All Device Connection bytes received, now load device file and continue
       SentOpenRequest = false;
       devConnected = true;
@@ -239,28 +237,39 @@ HoldMiliSec=millis();
         LoadDeviceFile();
         //String temp = cRevisionIDstr[device.FirmwareRevision]; //to test and catch if valid firmware revision number
       }
-      catch(Exception e) { ShowNotification(16); }
-      
-     //if(device.FirmwareVersion > 100) ConfirmBoxIDNum = 11; //unverified firmware
-      redraw();
+      catch(Exception e) { 
+        ShowNotification(16);
+      }
+
+      //if(device.FirmwareVersion > 100) ConfirmBoxIDNum = 11; //unverified firmware
+      //redraw();
       break;
     }  
     ReceiveCounter++;
-  }
-  else if(UploadInProgress == true || ConfigUploadSent == true) //added the cmdUploadConfigurations check so it would ack config upload
+  } 
+  else if (UploadInProgress == true || ConfigUploadSent == true) //added the cmdUploadConfigurations check so it would ack config upload
   {
-    if(RXByte4 == 'z' && RXByte3 == 'A' && RXByte2 == 'c' && RXByte1 == 'k')  
+    if (RXByte4 == 'z' && RXByte3 == 'A' && RXByte2 == 'c' && RXByte1 == 'k')  
     {
       WaitForAckFlag = true;
       println("ACK RECEIVED FOR PACKET# "+USBpacketCount);
       //also send CRC byte and packet# to maintain continuity
-      if(ConfigUploadSent == true) ShowNotification(5);
+      if (ConfigUploadSent == true) ShowNotification(5);
       ConfigUploadSent = false;
     }
-  }
-  else if(CmdIssued == true)
+    if (RXByte2 == 'C' && RXByte1 == 'S')  
+    {
+      //legacy configurations upload acknowledge
+      WaitForAckFlag = true;
+      println("Legacy Device Acknowledged Confiugrations upload");
+      //also send CRC byte and packet# to maintain continuity
+      if (ConfigUploadSent == true) ShowNotification(5);
+      ConfigUploadSent = false;
+    }   
+  } 
+  else if (CmdIssued == true)
   {
-    if(RXByte5 == 'c' && RXByte4 == 'm' && RXByte3 == 'd' && RXByte2 == 0)  
+    if (RXByte5 == 'c' && RXByte4 == 'm' && RXByte3 == 'd' && RXByte2 == 0)  
     {
       CmdIssued = false;  
       println("COMMAND #"+RXByte1+" AUTHENTICATED");
@@ -269,10 +278,10 @@ HoldMiliSec=millis();
       SendCounterB = 0;
       USBpacketCount = 0; //reset counter  
       PacketPointer = 0; //would also get set to 0, since it always sends 64 bytes then clears it.
-      
+
       //this executes the actual command software side once ACKed
       switch(cmdByte)
-      {
+      {     
       case 4: //Request Connection
         SentOpenRequest = true;
         ReceiveCounter = 0;
@@ -286,37 +295,45 @@ HoldMiliSec=millis();
       case 120: //Request Configurations
         SentConfigRequest = true;
         ReceiveCounter = 0;
-        break;      
-      }  //end switch  
+        break;
+      }  //end switch
     } //end byte check
     //else if(devConnected == false && cmdByte == 4)
-  
-    else if(RXByte4 > 0 && RXByte3 == 1 && RXByte2 == 1 && RXByte1 < 26)  
+    else if (RXByte4 > 0 && RXByte3 == 1 && RXByte2 == 1 && RXByte1 < 26)  
     {
       //Detects if version 1, rather than acking the cmd
       //hardwareID,hardwarev, firmwareV, firmwareRev
 
       println("Version 1 controller detected");
-     // ShowNotification(30);
-      
+      // ShowNotification(30);
+
       println(RXByte1+"   "+RXByte2+"   "+RXByte3+"   "+RXByte4+"   "+RXByte5);
-      
+
       //RXByte4 = ID numnber
       //RXByte3 = hardware v
       //RXByte2 = firmware v
       //RXByte1 = firmware rev
-      
+
       device.HardwareID = RXByte4;
       device.HardwareVersion = RXByte3;
       device.FirmwareVersion = RXByte2;
       device.FirmwareRevision = RXByte1;    
-      
-     LoadDeviceFile();
-      
+
+      SentOpenRequest = false;
+      devConnected = true;
+
+      try {
+        LoadDeviceFile();
+        //String temp = cRevisionIDstr[device.FirmwareRevision]; //to test and catch if valid firmware revision number
+      }
+      catch(Exception e) { 
+        ShowNotification(16);
+      }
+
       //CloseCommunicationPort(); //can't from here
       //CloseCOMFlag = true;
     }
-  } //end CmdIssued if()    
+  } //end CmdIssued if()
 } //end func
 
 //=====================================================================================================
@@ -325,7 +342,7 @@ void RequestCommand()
 {
   TerminateUpload = false; //reset flag
   WaitForAckFlag = false; 
-  
+
   try {
     // SendSingleDataByte("NLED11"); 
     SendSingleDataChar('N'); 
@@ -386,7 +403,7 @@ void RequestConfigurationUploadType2()
 
   cmdByte = cmdUploadConfigurations; //Upload Configurations
   cmdData[0] = 0; //MSB
-  
+
   switch(PowerDownTimeOutDD.selStr) //Power Down Timer Mode
   {
   case 0: //disabled
@@ -402,14 +419,33 @@ void RequestConfigurationUploadType2()
     cmdData[0] = 0x03;
     break;
   }  
-  
+
   //RequestCmdTimeOut = CMDTimeOutVal;  
-  
+
   cmdData[1] = 0; //LSB
   cmdData[2] = 0;  
   cmdData[3] = 0;  
   RequestCommand();
 }
+
+//===================================================================================================  
+
+void RequestConfigurationUploadLegacy()
+{
+  println("RequestConfigurationUpload()");
+
+  cmdByte = 1; //Upload Configurations use old command ID value
+  cmdData[0] = 0; //MSB
+  cmdData[1] = 0; //LSB
+  cmdData[2] = 0;  
+  cmdData[3] = 0;  
+  RequestCommand();
+  delay(100); //wait for device to setup, no command confirm
+  UploadInProgress = true;  
+  ConfigUploadSent = true;
+  SendConfigurations();  
+  UploadInProgress = false; 
+} //end RequestConfigurationUpload
 
 //===================================================================================================  
 
@@ -424,5 +460,4 @@ void RequestConfigurationUpload()
   cmdData[3] = 0;  
   RequestCommand();
 } //end RequestConfigurationUpload
-
 //===================================================================================================  

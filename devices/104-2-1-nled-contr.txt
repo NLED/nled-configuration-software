@@ -1,0 +1,27 @@
+HardwareID	104
+Name	NLED 16-Bit RGBW Lamp Controller
+WebpageURL	www.NLEDshop.com/16bitlamp
+SupportedFirmwareV	2
+SupportedFirmwareRev	1
+SupportedHardwareV	1
+Channels	4
+LockChannelAmt	true
+DataSpace	10240
+writeBlockSize	192	192	192	0 //index size, hwpv size, sequence size, +1 dummy to make it work....
+eraseBlockSize	1024
+HWPVSpace	1365
+MaxIndexedSequences	256
+IndexMemoryModel	0
+FillUpperData	true
+16-BitProcessor	true
+16-bitMode	true
+BasicVersion	0
+LinkedSupport	true
+GammaCorrection	2
+AccelerometerMode	0
+MaxSpeed	65535
+MaxFrames	256	65535
+ConfigFlags	none,none,fDMXAutoRelease,fDMXReleaseIdle,fAutoDetectID,fAutoDetect,f8or16Bit,fRS485Enable,fMasterEnable,fMasterFullPkts,fMaster16Bit,fGammaCorrectionEnabled,fIRCardEnable,fIRCardEnableSpeed,none,fDualModeCom
+ConfigBytes	bDMXAdrMSB,bDMXAdrLSB,bDMXModeID,bBaudRateID,bPWMMode
+DMXRxModes	8-bit Standard(4), 16-bit Standard(8), 8-bit Stand.+Intensity(5), 16-bit Stand.+Intensity(10), Sequence Control(3), Sequence Control+8-bit, Sequence Control+16-bit
+PixelChipset	0

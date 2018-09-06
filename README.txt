@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2017 Northern Lights Electronic Design, LLC
+Copyright (c) 2018 Northern Lights Electronic Design, LLC
  
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -23,13 +23,15 @@ SOFTWARE.
  Original Author: Jeffrey Nygaard
  Company: Northern Lights Electronic Design, LLC
  Contact: JNygaard@NLEDShop.com
- Date Updated: April 13, 2018
- Software Version:  2a
+ Date Updated: September 5, 2018
+ Software Version:  2b
  Webpage: www.NLEDShop.com/nledconfig
  Written in Processing v3.3.7  - www.Processing.org
  
  //============================================================================================================
  
+ The most recent firmware updates can be found at http://www.nledshop.com/deviceupdates/
+
  Supported Devices: 
 	 NLED Pixel Controller Mini - version 4 firmware
 	 NLED Pixel Controller Micro
@@ -40,14 +42,16 @@ SOFTWARE.
 	 NLED 16-Bit RGBW Lamp Controller
 	 NLED 30 Channel High Current LED Controller
 	 NLED Quasar
+	 
+	 Legacy Supported Devices: Note, if not working correctly use NLED Aurora Control Version 1
+ 	 NLED Four Channel Controller Mini
+	 NLED 4 Channel DMX Wash Controller
+ 
  
  Unsupported Devices, Use NLED Configuration Software v.1c
 	 NLED OctoSequencer Controller
  
- Unsupported Devices, Use NLED Aurora Control Version 1
-	 NLED Four Channel Controller Mini
-	 NLED 4 Channel DMX Wash Controller
- 
+
  Unsupported Devices, Use NLED Aurora Control Version 2
 	 None
   

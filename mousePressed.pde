@@ -1,3 +1,4 @@
+
 //======================================================================================================================
 
 void deselectTextField()
@@ -57,9 +58,10 @@ void mousePressed()
         case 0: //null
           break;
         case 1: //Upload Configurations      
-          if(device.HardwareID == 60 || device.HardwareID == 61)   SendConfigurationsNonAurora();
-          else if (device.BasicVersion == 2) RequestConfigurationUploadType2();
-          else RequestConfigurationUpload(); //1 & 2
+          if(device.HardwareID == 60 || device.HardwareID == 61)   SendConfigurationsNonAurora(); //pixel micro and pixel mini
+          else if (device.BasicVersion == 2) RequestConfigurationUploadType2(); //octosequencer
+            else if (device.BasicVersion == 3) RequestConfigurationUploadLegacy();
+          else RequestConfigurationUpload(); //send configurations normally for all other devices.
           
           ShowNotification(4);
           break;

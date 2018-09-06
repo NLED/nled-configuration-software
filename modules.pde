@@ -1,3 +1,6 @@
+
+//===================================================================================================  
+
 class SpecHWModules
 {
   int IDnumber;
@@ -152,6 +155,15 @@ class SpecHWModules
     case 30: //mini Serial Baud Rate
       BaudRateMiniV4DD.display();
       break;
+    case 31: //DMX Timeout auto release
+      DMXAutoReleaseDD.display();
+      break;   
+     case 32: //Legancy Signal Loss Auto Detection
+      AutoReleaseLegacyDD.display();
+      break;   
+     case 33: //Legacy Reception mode. DMX or serial
+      ReceptionModeLegacyDD.display();
+      break;  
     }
 
     textAlign(CENTER);
@@ -308,6 +320,18 @@ class SpecHWModules
       BaudRateMiniV4DD.xpos = xpos+10;
       BaudRateMiniV4DD.ypos = (ypos+(bHeight))-45;         
       break;
+     case 31: //DMX Timeout auto release
+      DMXAutoReleaseDD.xpos = xpos+10;
+      DMXAutoReleaseDD.ypos = (ypos+(bHeight))-35;        
+      break;     
+     case 32: //Legancy Signal Loss Auto Detection
+      AutoReleaseLegacyDD.xpos = xpos+10;
+      AutoReleaseLegacyDD.ypos = (ypos+(bHeight))-35;        
+      break;   
+     case 33: //Legacy Reception mode. DMX or serial
+      ReceptionModeLegacyDD.xpos = xpos+10;
+      ReceptionModeLegacyDD.ypos = (ypos+(bHeight))-35;        
+      break;     
     }
   }//end InitPositions
 
@@ -603,6 +627,30 @@ class SpecHWModules
     case 30: //mini Serial Baud Rate
 
       break;
+  case 31: //DMX Timeout auto release
+    switch(DMXAutoReleaseDD.selStr)
+    {
+    case 0: //None
+      //both ID flags  0
+      return 0;
+    case 1: //Enabled, Restore Sequence
+      if(passedID == 0)   return 1;
+      if(passedID == 1)   return 0;  
+      break;
+    case 2: //Enabled, Play Idle  
+      if(passedID == 0)   return 1;
+      if(passedID == 1)   return 1;
+      break;
+    }//end switch
+    break;
+   case 32: //Legancy Signal Loss Auto Detection
+    if(AutoReleaseLegacyDD.selStr == 0) return 0;
+    else return 1;
+    //break;   
+   case 33: //Legacy Reception mode. DMX or serial
+    if(ReceptionModeLegacyDD.selStr == 0) return 0;
+    else return 1;    
+    //break;  
     }  //end switch 
 
     println("Did not find InputModule[] to GetBitValues() from with ID "+IDnumber);
@@ -670,19 +718,25 @@ class SpecHWModules
       break;  
     case 19: //Dual Communication Mode
 
-      break; //break;  
-    case 20: //PWM Freq A
-
-      break;
-    case 21: //Stand-Alone A
-
+      break; 
+    case 20: //PWM Freq LegacyA
+      return (PWMFreqADD.selStr+4); //4,5,6,7 are loaded into T6CON
+    case 21: //Stand-Alone Legacy A
+      switch(StandAloneADD.selStr) //either 10-42 for sequences, 1 for hold, 2 for blank, 3 blank with fade out
+      {
+      case 0: //hold
+      case 1: //blank
+      case 2: //fade out
+        return (StandAloneADD.selStr+1); //0 is null so add 1
+      case 3: //stand alone
+        return ((int(TextFields[13].label)+9)); //10+ is sequences, base 0, textfield should be at least 1
+      }  //end switch
       break;
     case 22: //PWM Profile
       return (PWMProfileADD.selStr);  //16-bit lamp PWM Profile  
     case 23: //IR Remote Add On
 
       break;
-
       //start added modules
     case 24: //DMX Pixel Amount:
     
@@ -690,7 +744,7 @@ class SpecHWModules
       if (passedID == 0)   return ((int(TextFields[4].label) >> 8) & 0xFF); //DMXAdr MSB
       if (passedID == 1)   return (int(TextFields[4].label) & 0xFF); //DMXAdr LSB
       break;
-    case 25: //"Enable Activity LED:
+    case 25: //Enable Activity LED:
 
       break;
     case 26: //DMX Decoder Mode:
@@ -707,13 +761,20 @@ class SpecHWModules
       //break;
     case 30: //mini Serial Baud Rate
       return BaudRateMiniV4DD.selStr; //BaudRateID
-      //break;
+  case 31: //DMX Timeout auto release
+    
+    break;
+   case 32: //Legancy Signal Loss Auto Detection
+
+    break;   
+   case 33: //Legacy Reception mode. DMX or serial
+
+    break;  
     }  //end switch  
 
     println("Did not find InputModule[] to GetByteValues() from with ID "+IDnumber);
     return 0;
   } //end GetByteValues()
-
 
 
   boolean over() 
